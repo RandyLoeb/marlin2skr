@@ -73,7 +73,9 @@
 // User-specified version info of this build to display in [Pronterface, etc] terminal window during
 // startup. Implementation of an idea by Prof Braino to inform user that any changes made to this
 // build by the user have been successfully uploaded into firmware.
-#define STRING_CONFIG_H_AUTHOR "(none, default config)" // Who made the changes.
+// REL 052519
+#define STRING_CONFIG_H_AUTHOR "(YabbTootsie 052519a)" // Who made the changes.
+//#define STRING_CONFIG_H_AUTHOR "(none, default config)" // Who made the changes.
 #define SHOW_BOOTSCREEN
 #define STRING_SPLASH_LINE1 SHORT_BUILD_VERSION // will be shown during bootup in line 1
 #define STRING_SPLASH_LINE2 WEBSITE_URL         // will be shown during bootup in line 2
@@ -155,7 +157,9 @@
 #define EXTRUDERS 1
 
 // Generally expected filament diameter (1.75, 2.85, 3.0, ...). Used for Volumetric, Filament Width Sensor, etc.
-#define DEFAULT_NOMINAL_FILAMENT_DIA 3.0
+// REL 052519
+#define DEFAULT_NOMINAL_FILAMENT_DIA 1.75
+//#define DEFAULT_NOMINAL_FILAMENT_DIA 3.0
 
 // For Cyclops or any "multi-extruder" that shares a single nozzle.
 //#define SINGLENOZZLE
@@ -732,9 +736,10 @@
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4[, E5]]]]]
  */
+// REL 052519 changed from 300,300,5,25 based on th3d
 #define DEFAULT_MAX_FEEDRATE \
   {                          \
-    300, 300, 5, 25          \
+    500, 500, 15, 50         \
   }
 
 /**
@@ -743,9 +748,10 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4[, E5]]]]]
  */
+// REL 052519 changed from 3000, 3000, 100, 10000 based on th3d
 #define DEFAULT_MAX_ACCELERATION \
   {                              \
-    3000, 3000, 100, 10000       \
+    1000, 1000, 100, 5000        \
   }
 
 /**
@@ -756,9 +762,13 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION 3000         // X, Y, Z and E acceleration for printing moves
-#define DEFAULT_RETRACT_ACCELERATION 3000 // E acceleration for retracts
-#define DEFAULT_TRAVEL_ACCELERATION 3000  // X, Y, Z acceleration for travel (non printing) moves
+// REL 052519 changed based on th3d below
+#define DEFAULT_ACCELERATION 500
+#define DEFAULT_RETRACT_ACCELERATION 1000
+#define DEFAULT_TRAVEL_ACCELERATION 500
+//#define DEFAULT_ACCELERATION 3000         // X, Y, Z and E acceleration for printing moves
+//#define DEFAULT_RETRACT_ACCELERATION 3000 // E acceleration for retracts
+//#define DEFAULT_TRAVEL_ACCELERATION 3000  // X, Y, Z acceleration for travel (non printing) moves
 
 //
 // Use Junction Deviation instead of traditional Jerk Limiting
@@ -858,7 +868,8 @@
 /**
  * The BLTouch probe uses a Hall effect sensor and emulates a servo.
  */
-//#define BLTOUCH
+//REL 052519
+#define BLTOUCH
 #if ENABLED(BLTOUCH)
 //#define BLTOUCH_DELAY 500   // Minimum Command delay (ms). Enable and increase if needed
 
@@ -907,12 +918,16 @@
  *      O-- FRONT --+
  *    (0,0)
  */
-#define X_PROBE_OFFSET_FROM_EXTRUDER 10 // X offset: -left  +right  [of the nozzle]
-#define Y_PROBE_OFFSET_FROM_EXTRUDER 10 // Y offset: -front +behind [the nozzle]
-#define Z_PROBE_OFFSET_FROM_EXTRUDER 0  // Z offset: -below +above  [the nozzle]
+//REL 052519 took my old settings from th3d
+#define X_PROBE_OFFSET_FROM_EXTRUDER -48 //-44  // X offset: -left  +right  [of the nozzle]
+#define Y_PROBE_OFFSET_FROM_EXTRUDER -10 //-14  // Y offset: -front +behind [the nozzle]
+//#define X_PROBE_OFFSET_FROM_EXTRUDER 10 // X offset: -left  +right  [of the nozzle]
+//#define Y_PROBE_OFFSET_FROM_EXTRUDER 10 // Y offset: -front +behind [the nozzle]
+#define Z_PROBE_OFFSET_FROM_EXTRUDER 0 // Z offset: -below +above  [the nozzle]
 
 // Certain types of probes need to stay away from edges
-#define MIN_PROBE_EDGE 10
+//REL 052519 based on th3d
+#define MIN_PROBE_EDGE 5
 
 // X and Y axis travel speed (mm/m) between probes
 #define XY_PROBE_SPEED 8000
@@ -926,7 +941,8 @@
 // The number of probes to perform at each point.
 //   Set to 2 for a fast/slow probe, using the second probe result.
 //   Set to 3 or more for slow probes, averaging the results.
-//#define MULTIPLE_PROBING 2
+//REL 052519 based on th3d
+#define MULTIPLE_PROBING 2
 
 /**
  * Z probes require clearance when deploying, stowing, and moving between
@@ -942,19 +958,28 @@
  * Example: `M851 Z-5` with a CLEARANCE of 4  =>  9mm from bed to nozzle.
  *     But: `M851 Z+1` with a CLEARANCE of 2  =>  2mm from bed to nozzle.
  */
-#define Z_CLEARANCE_DEPLOY_PROBE 10  // Z Clearance for Deploy/Stow
-#define Z_CLEARANCE_BETWEEN_PROBES 5 // Z Clearance between probe points
-#define Z_CLEARANCE_MULTI_PROBE 5    // Z Clearance between multiple probes
-//#define Z_AFTER_PROBING           5 // Z position after probing is done
-
-#define Z_PROBE_LOW_POINT -2 // Farthest distance below the trigger-point to go before stopping
+//REL 052519 based on th3d
+#define Z_CLEARANCE_DEPLOY_PROBE 5
+#define Z_CLEARANCE_BETWEEN_PROBES 3
+//#define Z_CLEARANCE_DEPLOY_PROBE 10  // Z Clearance for Deploy/Stow
+//#define Z_CLEARANCE_BETWEEN_PROBES 5 // Z Clearance between probe points
+#define Z_CLEARANCE_MULTI_PROBE 5 // Z Clearance between multiple probes
+//REL 052519 based on th3d
+#define Z_AFTER_PROBING 5 // Z position after probing is done
+//REL 052519 based on th3d
+#define Z_PROBE_LOW_POINT -3
+//#define Z_PROBE_LOW_POINT -2 // Farthest distance below the trigger-point to go before stopping
 
 // For M851 give a range for adjusting the Z probe offset
-#define Z_PROBE_OFFSET_RANGE_MIN -20
-#define Z_PROBE_OFFSET_RANGE_MAX 20
+//REL 052519 based on th3d
+#define Z_PROBE_OFFSET_RANGE_MIN -5
+#define Z_PROBE_OFFSET_RANGE_MAX 1
+//#define Z_PROBE_OFFSET_RANGE_MIN -20
+//#define Z_PROBE_OFFSET_RANGE_MAX 20
 
 // Enable the M48 repeatability test to test probe accuracy
-//#define Z_MIN_PROBE_REPEATABILITY_TEST
+//REL 052519 based on th3d
+#define Z_MIN_PROBE_REPEATABILITY_TEST
 
 // Before deploy/stow pause for user confirmation
 //#define PAUSE_BEFORE_DEPLOY_STOW
@@ -1033,8 +1058,11 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 200
-#define Y_BED_SIZE 200
+// REL 052519 th3d values for ender3
+#define X_BED_SIZE 235
+#define Y_BED_SIZE 235
+//#define X_BED_SIZE 200
+//#define Y_BED_SIZE 200
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
@@ -1042,7 +1070,9 @@
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 200
+//REL 052519 taken from th3d for ender3
+#define Z_MAX_POS 250
+//#define Z_MAX_POS 200
 
 /**
  * Software Endstops
@@ -1145,7 +1175,8 @@
  */
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
-//#define AUTO_BED_LEVELING_BILINEAR
+//REL 052519 based on th3d
+#define AUTO_BED_LEVELING_BILINEAR
 //#define AUTO_BED_LEVELING_UBL
 //#define MESH_BED_LEVELING
 
@@ -1153,7 +1184,8 @@
  * Normally G28 leaves leveling disabled on completion. Enable
  * this option to have G28 restore the prior leveling state.
  */
-//#define RESTORE_LEVELING_AFTER_G28
+//REL 052519 uncommented based on th3d
+#define RESTORE_LEVELING_AFTER_G28
 
 /**
  * Enable detailed logging of G28, G29, M48, etc.
@@ -1195,6 +1227,13 @@
 #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
 // Set the boundaries for probing (where the probe can reach).
+//REL 052519 based on th3d
+#define EZABL_PROBE_EDGE 15
+#define LEFT_PROBE_BED_POSITION (max(EZABL_PROBE_EDGE, X_PROBE_OFFSET_FROM_EXTRUDER))
+#define RIGHT_PROBE_BED_POSITION (min(X_BED_SIZE - EZABL_PROBE_EDGE, X_BED_SIZE + X_PROBE_OFFSET_FROM_EXTRUDER))
+#define FRONT_PROBE_BED_POSITION (max(EZABL_PROBE_EDGE, Y_PROBE_OFFSET_FROM_EXTRUDER))
+#define BACK_PROBE_BED_POSITION (min(Y_BED_SIZE - EZABL_PROBE_EDGE, Y_BED_SIZE + Y_PROBE_OFFSET_FROM_EXTRUDER))
+
 //#define LEFT_PROBE_BED_POSITION MIN_PROBE_EDGE
 //#define RIGHT_PROBE_BED_POSITION (X_BED_SIZE - (MIN_PROBE_EDGE))
 //#define FRONT_PROBE_BED_POSITION MIN_PROBE_EDGE
@@ -1207,7 +1246,8 @@
 
 // Beyond the probed grid, continue the implied tilt?
 // Default is to maintain the height of the nearest edge.
-//#define EXTRAPOLATE_BEYOND_GRID
+//REL 052519 based on th3d
+#define EXTRAPOLATE_BEYOND_GRID
 
 //
 // Experimental Subdivision of the grid by Catmull-Rom method.
@@ -1314,7 +1354,8 @@
 // - Move the Z probe (or nozzle) to a defined XY point before Z Homing when homing all axes (G28).
 // - Prevent Z homing when the Z probe is outside bed area.
 //
-//#define Z_SAFE_HOMING
+//REL 052519 based on th3d
+#define Z_SAFE_HOMING
 
 #if ENABLED(Z_SAFE_HOMING)
 #define Z_SAFE_HOMING_X_POINT ((X_BED_SIZE) / 2) // X point for Z homing when homing all axes (G28).
@@ -1322,7 +1363,9 @@
 #endif
 
 // Homing speeds (mm/m)
-#define HOMING_FEEDRATE_XY (50 * 60)
+// REL 052519 slower homing from th3d
+#define HOMING_FEEDRATE_XY (20 * 60)
+//#define HOMING_FEEDRATE_XY (50 * 60)
 #define HOMING_FEEDRATE_Z (4 * 60)
 
 // Validate that endstops are triggered on homing moves
@@ -1400,7 +1443,8 @@
  *   M501 - Read settings from EEPROM. (i.e., Throw away unsaved changes)
  *   M502 - Revert settings to "factory" defaults. (Follow with M500 to init the EEPROM.)
  */
-//#define EEPROM_SETTINGS     // Persistent storage with M500 and M501
+// REL 052519
+#define EEPROM_SETTINGS // Persistent storage with M500 and M501
 //#define DISABLE_M503        // Saves ~2700 bytes of PROGMEM. Disable for release!
 #define EEPROM_CHITCHAT // Give feedback on EEPROM commands. Disable to save PROGMEM.
 #if ENABLED(EEPROM_SETTINGS)
@@ -1456,7 +1500,8 @@
  *    P1  Raise the nozzle always to Z-park height.
  *    P2  Raise the nozzle by Z-park amount, limited to Z_MAX_POS.
  */
-//#define NOZZLE_PARK_FEATURE
+//REL 052519 uncommented b/c uncommented in th3d
+#define NOZZLE_PARK_FEATURE
 
 #if ENABLED(NOZZLE_PARK_FEATURE)
 // Specify a park position as { X, Y, Z_raise }
@@ -1696,7 +1741,8 @@
 //
 // Add individual axis homing items (Home X, Home Y, and Home Z) to the LCD menu.
 //
-//#define INDIVIDUAL_AXIS_HOMING_MENU
+//REL 051519 uncommented b/c uncommented in th3d
+#define INDIVIDUAL_AXIS_HOMING_MENU
 
 //
 // SPEAKER/BUZZER
@@ -1867,7 +1913,8 @@
 // RepRapDiscount FULL GRAPHIC Smart Controller
 // http://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller
 //
-//#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+//052519 REL uncommnted b/c th3d for ender3
+#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
 
 //
 // ReprapWorld Graphical LCD
@@ -2053,14 +2100,17 @@
 // Use software PWM to drive the fan, as for the heaters. This uses a very low frequency
 // which is not as annoying as with the hardware PWM. On the other hand, if this frequency
 // is too low, you should also increment SOFT_PWM_SCALE.
-//#define FAN_SOFT_PWM
+// REL 052519 added b/c of th3d setting for 5015 parts cooling fan
+#define FAN_SOFT_PWM
 
 // Incrementing this by 1 will double the software PWM frequency,
 // affecting heaters, and the fan if FAN_SOFT_PWM is enabled.
 // However, control resolution will be halved for each increment;
 // at zero value, there are 128 effective control positions.
 // :[0,1,2,3,4,5,6,7]
-#define SOFT_PWM_SCALE 0
+// REL 052519 added b/c of th3d setting for 5015 parts cooling fan
+#define SOFT_PWM_SCALE 1
+//#define SOFT_PWM_SCALE 0
 
 // If SOFT_PWM_SCALE is set to a value higher than 0, dithering can
 // be used to mitigate the associated resolution loss. If enabled,
