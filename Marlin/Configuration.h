@@ -1913,8 +1913,8 @@
 // RepRapDiscount FULL GRAPHIC Smart Controller
 // http://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller
 //
-//052519 REL uncommnted b/c th3d for ender3
-#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+//052519 REL uncommnted b/c th3d for ender3, then commented out for cr10
+//#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
 
 //
 // ReprapWorld Graphical LCD
@@ -2011,7 +2011,8 @@
 // This is RAMPS-compatible using a single 10-pin connector.
 // (For CR-10 owners who want to replace the Melzi Creality board but retain the display)
 //
-//#define CR10_STOCKDISPLAY
+//REL 052619 uncommented after blank screen
+#define CR10_STOCKDISPLAY
 
 //
 // ANET and Tronxy Graphical Controller
