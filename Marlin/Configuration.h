@@ -144,7 +144,7 @@
 // Optional custom name for your RepStrap or other custom machine
 // Displayed in the LCD "Ready" message
 //REL 052519 will update this each time
-#define CUSTOM_MACHINE_NAME "YabbaTootsie 052519a"
+#define CUSTOM_MACHINE_NAME "YabbaTootsie 052619b"
 
 // Define this to set a unique identifier for this printer, (Used by some programs to differentiate between machines)
 // You can use an online service to generate a random UUID. (eg http://www.uuidgenerator.net/version4)
