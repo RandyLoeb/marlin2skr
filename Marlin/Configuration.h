@@ -74,7 +74,7 @@
 // startup. Implementation of an idea by Prof Braino to inform user that any changes made to this
 // build by the user have been successfully uploaded into firmware.
 // REL 052519
-#define STRING_CONFIG_H_AUTHOR "(YabbTootsie 052519a)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(YabbTootsie 052919a)" // Who made the changes.
 //#define STRING_CONFIG_H_AUTHOR "(none, default config)" // Who made the changes.
 #define SHOW_BOOTSCREEN
 #define STRING_SPLASH_LINE1 SHORT_BUILD_VERSION // will be shown during bootup in line 1
@@ -144,7 +144,7 @@
 // Optional custom name for your RepStrap or other custom machine
 // Displayed in the LCD "Ready" message
 //REL 052519 will update this each time
-#define CUSTOM_MACHINE_NAME "YabbaTootsie 052619b"
+#define CUSTOM_MACHINE_NAME "YabbaTootsie 052919e"
 
 // Define this to set a unique identifier for this printer, (Used by some programs to differentiate between machines)
 // You can use an online service to generate a random UUID. (eg http://www.uuidgenerator.net/version4)
@@ -469,8 +469,8 @@
 #define PID_MAX BANG_MAX // Limits current to nozzle while PID is active (see PID_FUNCTIONAL_RANGE below); 255=full current
 #define PID_K1 0.95      // Smoothing factor within any PID loop
 #if ENABLED(PIDTEMP)
-//#define PID_EDIT_MENU         // Add PID editing to the "Advanced Settings" menu. (~700 bytes of PROGMEM)
-//#define PID_AUTOTUNE_MENU     // Add PID auto-tuning to the "Advanced Settings" menu. (~250 bytes of PROGMEM)
+#define PID_EDIT_MENU     // Add PID editing to the "Advanced Settings" menu. (~700 bytes of PROGMEM)
+#define PID_AUTOTUNE_MENU // Add PID auto-tuning to the "Advanced Settings" menu. (~250 bytes of PROGMEM)
 //#define PID_DEBUG             // Sends debug data to the serial port.
 //#define PID_OPENLOOP 1        // Puts PID in open loop. M104/M140 sets the output power from 0 to PID_MAX
 //#define SLOW_PWM_HEATERS      // PWM with very low frequency (roughly 0.125Hz=8s) and minimum state time of approximately 1s useful for heaters driven by a relay
@@ -480,11 +480,19 @@
                                 // is more than PID_FUNCTIONAL_RANGE then the PID will be shut off and the heater will be set to min/max.
 
 // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
+//052919 with parts fan on 50%/125  (M106 125) ran
+//M303 C8 S220
+//#define DEFAULT_Kp 19.61/20.53  avg=20.07
+//#define DEFAULT_Ki 1.54/1.61   avg=1.58
+//#define DEFAULT_Kd 62.42/65.39  avg=63.91
+#define DEFAULT_Kp 20.07
+#define DEFAULT_Ki 1.58
+#define DEFAULT_Kd 63.91
 
 // Ultimaker
-#define DEFAULT_Kp 22.2
-#define DEFAULT_Ki 1.08
-#define DEFAULT_Kd 114
+//#define DEFAULT_Kp 22.2
+//#define DEFAULT_Ki 1.08
+//#define DEFAULT_Kd 114
 
 // MakerGear
 //#define DEFAULT_Kp 7.0
@@ -515,8 +523,10 @@
  * heater. If your configuration is significantly different than this and you don't understand
  * the issues involved, don't use bed PID until someone else verifies that your hardware works.
  */
+//052919 turned off pid b/c didn't seem to work
 //#define PIDTEMPBED
 
+//052919 uncommented to see if it helps, seems like made worse
 //#define BED_LIMIT_SWITCHING
 
 /**
@@ -531,11 +541,19 @@
 
 //#define PID_BED_DEBUG // Sends debug data to the serial port.
 
+//052919 ran M303 E-1 C8 S65 twice:
+//#define DEFAULT_bedKp 333.26/307.62 avg=319.94
+//#define DEFAULT_bedKi 38.94/34 avg=36.47
+//#define DEFAULT_bedKd 712.97/695.92 avg=704.445
+#define DEFAULT_bedKp 319.94
+#define DEFAULT_bedKi 36.47
+#define DEFAULT_bedKd 704.445
+
 //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
 //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-#define DEFAULT_bedKp 10.00
-#define DEFAULT_bedKi .023
-#define DEFAULT_bedKd 305.4
+//#define DEFAULT_bedKp 10.00
+//#define DEFAULT_bedKi .023
+//#define DEFAULT_bedKd 305.4
 
 //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
 //from pidautotune
