@@ -144,7 +144,7 @@
 // Optional custom name for your RepStrap or other custom machine
 // Displayed in the LCD "Ready" message
 //REL 052519 will update this each time
-#define CUSTOM_MACHINE_NAME "YabbaTootsie 052919e"
+#define CUSTOM_MACHINE_NAME "YabbaTootsie 053119c"
 
 // Define this to set a unique identifier for this printer, (Used by some programs to differentiate between machines)
 // You can use an online service to generate a random UUID. (eg http://www.uuidgenerator.net/version4)
@@ -685,8 +685,11 @@
  *          TMC5160, TMC5160_STANDALONE
  * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'L6470', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']
  */
+#define X_DRIVER_TYPE TMC2208
 //#define X_DRIVER_TYPE  A4988
+#define Y_DRIVER_TYPE TMC2208
 //#define Y_DRIVER_TYPE  A4988
+#define Z_DRIVER_TYPE TMC2208
 //#define Z_DRIVER_TYPE  A4988
 //#define X2_DRIVER_TYPE A4988
 //#define Y2_DRIVER_TYPE A4988
@@ -1045,12 +1048,15 @@
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
 // REL 052619 changed b/c it was going wrong way
-#define INVERT_X_DIR false
+// REL 053119 changed after putting in 2208
+#define INVERT_X_DIR true
 // REL 052619 changed b/c it was going wrong way
-#define INVERT_Y_DIR false
+// REL 053019 changed after putting in 2208
+#define INVERT_Y_DIR true
 //#define INVERT_Y_DIR true
 // REL 052619 changed b/c it was going wrong way
-#define INVERT_Z_DIR true
+// REL 053019 changed after putting in 2208
+#define INVERT_Z_DIR false
 //#define INVERT_Z_DIR false
 
 // @section extruder
